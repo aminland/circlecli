@@ -49,14 +49,14 @@ def init_config(config_path):
     if not config.get('token'):
         # read new token
         print("Enter your CircleCI API token at the prompt (https://circleci.com/account/api).")
-        config['token'] = raw_input("Token: ").strip()
+        config['token'] = input("Token: ").strip()
 
         # ask other questions since we're here
         if not config.get('default_username'):
             print("")
             print("A default username ensures you don't have to specify one for every command.")
             print("(e.g., /api/v1/project/:default_username/:project)")
-            config['default_username'] = raw_input("Default username (leave blank for none): ").strip()
+            config['default_username'] = input("Default username (leave blank for none): ").strip()
 
             # write new config
             config_fp = open(config_path, 'w')
