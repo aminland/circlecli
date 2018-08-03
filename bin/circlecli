@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import ConfigParser
+import configparser
 from os import environ as env
 
 # for reusing the module docstring
@@ -22,14 +22,14 @@ def read_config(config_file):
     Returns:
         (dict) the configuration values
     """
-    cp = ConfigParser.SafeConfigParser()
+    cp = configparser.SafeConfigParser()
     cp.read(config_file)
 
     # build the config object
     config = {}
     try:
         [config.setdefault(k, v) for k, v in cp.items(SECTION_NAME)]
-    except ConfigParser.NoSectionError:
+    except configparser.NoSectionError:
         pass
 
     return config
@@ -60,7 +60,7 @@ def init_config(config_path):
 
             # write new config
             config_fp = open(config_path, 'w')
-            cp = ConfigParser.SafeConfigParser()
+            cp = configparser.SafeConfigParser()
             cp.add_section(SECTION_NAME)
             cp.set(SECTION_NAME, 'token', config['token'])
             cp.set(SECTION_NAME, 'baseurl', config['baseurl'])
